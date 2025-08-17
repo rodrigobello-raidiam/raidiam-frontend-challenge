@@ -10,7 +10,6 @@ describe('Shopping Flow', () => {
     cy.get('.product-card').should('have.length.greaterThan', 0);
 
     cy.get('.search-input').type('shirt');
-    cy.wait(300);
     cy.get('.product-card').should('have.length.at.least', 1);
 
     cy.get('.category-select').select('Clothing');
@@ -57,7 +56,6 @@ describe('Shopping Flow', () => {
 
   it('should handle URL state for search and filters', () => {
     cy.get('.search-input').type('shirt');
-    cy.wait(300);
 
     cy.get('.category-select').select('Clothing');
 
@@ -71,7 +69,6 @@ describe('Shopping Flow', () => {
 
   it('should handle empty search results', () => {
     cy.get('.search-input').type('nonexistentproduct12345');
-    cy.wait(300);
 
     cy.get('.no-results').should('be.visible');
     cy.get('.no-results').should('contain', 'No products found');

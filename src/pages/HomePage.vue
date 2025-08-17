@@ -3,7 +3,9 @@
     <!-- Search and Filters -->
     <div class="filters">
       <div class="search-container">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M5.91667 0.5C7.35326 0.5 8.73101 1.07068 9.74683 2.0865C10.7627 3.10233 11.3333 4.48008 11.3333 5.91667C11.3333 7.25833 10.8417 8.49167 10.0333 9.44167L10.2583 9.66667H10.9167L15.0833 13.8333L13.8333 15.0833L9.66667 10.9167V10.2583L9.44167 10.0333C8.49167 10.8417 7.25833 11.3333 5.91667 11.3333C4.48008 11.3333 3.10233 10.7627 2.0865 9.74683C1.07068 8.73101 0.5 7.35326 0.5 5.91667C0.5 4.48008 1.07068 3.10233 2.0865 2.0865C3.10233 1.07068 4.48008 0.5 5.91667 0.5ZM5.91667 2.16667C3.83333 2.16667 2.16667 3.83333 2.16667 5.91667C2.16667 8 3.83333 9.66667 5.91667 9.66667C8 9.66667 9.66667 8 9.66667 5.91667C9.66667 3.83333 8 2.16667 5.91667 2.16667Z" fill="var(--gray-secondary)"/>
+          </svg>
         <input
           v-model="searchQuery"
           type="text"
@@ -13,20 +15,38 @@
         />
       </div>
 
-      <select
-        v-model="selectedCategory"
-        class="category-select"
-        aria-label="Filter by category"
-      >
-        <option value="">All Categories</option>
-        <option
-          v-for="category in categories"
-          :key="category.id"
-          :value="category.id"
+      <div class="category-container">
+        <svg
+          class="category-arrow"
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          {{ category.name }}
-        </option>
-      </select>
+                     <path
+             d="M3 4.5L6 7.5L9 4.5"
+             stroke="var(--gray-secondary)"
+             stroke-width="1.5"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+           />
+        </svg>
+        <select
+          v-model="selectedCategory"
+          class="category-select"
+          aria-label="Filter by category"
+        >
+          <option value="">All Categories</option>
+          <option
+            v-for="category in categories"
+            :key="category.id"
+            :value="category.id"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <!-- Loading State -->
@@ -164,6 +184,24 @@ onMounted(() => {
   flex: 1;
   min-width: 300px;
   position: relative;
+
+}
+
+.search-input {
+  display: flex;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  width: 100%;
+  font-size: 16px;
+  align-items: center;
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--gray-primary);
+  border: none;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--gray-primary) !important;
 }
 
 .search-icon {
@@ -171,32 +209,41 @@ onMounted(() => {
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #666;
-  font-size: 1.125rem;
+  width: 16px;
+  height: 16px;
 }
 
-.search-input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: white;
+.category-container {
+  position: relative;
+  min-width: 200px;
 }
 
-.search-input:focus {
-  outline: none;
-  border-color: var(--purple-primary);
-  box-shadow: 0 0 0 3px rgba(100, 109, 237, 0.1);
+.category-arrow {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .category-select {
-  padding: 0.75rem 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: white;
+  display: flex;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  width: 100%;
+  font-size: 16px;
+  align-items: center;
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--gray-primary);
+  border: none;
+  outline: none;
   min-width: 200px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .category-select:focus {
@@ -217,7 +264,7 @@ onMounted(() => {
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #f3f4f6;
+  border: 4px solid var(--gray-quaternary);
   border-top: 4px solid var(--purple-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -236,7 +283,7 @@ onMounted(() => {
 .error {
   text-align: center;
   padding: 4rem 2rem;
-  color: #ef4444;
+  color: var(--error);
 }
 
 .retry-btn {
@@ -257,7 +304,7 @@ onMounted(() => {
 .no-results {
   text-align: center;
   padding: 4rem 2rem;
-  color: #666;
+  color: var(--gray-secondary);
 }
 
 .products-grid {

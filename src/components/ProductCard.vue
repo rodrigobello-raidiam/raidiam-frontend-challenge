@@ -49,7 +49,7 @@ const navigateToProduct = (): void => {
   width: 100%;
   height: 200px;
   overflow: hidden;
-  background: #f8f9fa;
+  background: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,10 +72,10 @@ const navigateToProduct = (): void => {
 
 .product-title {
   margin: 0 0 0.5rem 0;
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: 600;
-  color: #333;
-  line-height: 1.4;
+  font-style: normal;
+  line-height: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -84,8 +84,9 @@ const navigateToProduct = (): void => {
 
 .product-price {
   margin: 0;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #6366f1;
+  font-weight: 500;
+  font-size: 16px;
+  font-style: normal;
+  color: var(--purple-primary);
 }
 </style>

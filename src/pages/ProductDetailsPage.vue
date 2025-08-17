@@ -16,10 +16,28 @@
     <div v-else-if="product" class="product-content">
       <!-- Breadcrumb -->
       <nav class="breadcrumb">
-        <button @click="goBack" class="back-btn" aria-label="Go back">←</button>
-        <span class="breadcrumb-text">
-          {{ product.category.name }} / {{ product.category.name }}
-        </span>
+        <button @click="goBack" class="back-btn" aria-label="Go back">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+                         <path
+               d="M10 12L6 8L10 4"
+               stroke="var(--gray-secondary)"
+               stroke-width="1.5"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+             />
+          </svg>
+        </button>
+        <div class="breadcrumb-text">
+          <span class="breadcrumb-link">{{ product.category.name }}</span>
+          <span class="breadcrumb-separator"> / </span>
+          <span class="breadcrumb-current">{{ product.category.name }}</span>
+        </div>
       </nav>
 
       <div class="product-layout">
@@ -31,18 +49,6 @@
 
           <div class="product-meta">
             <p class="product-price">${{ product.price.toFixed(2) }}</p>
-            <div class="product-rating">
-              <span class="stars">
-                <span v-for="i in 5" :key="i" class="star">
-                  {{ i <= Math.floor(product.rating || 0) ? '★' : '☆' }}
-                </span>
-              </span>
-              <span class="rating-text"
-                >{{ product.rating || 0 }}/5.0 ({{
-                  Math.floor(Math.random() * 1000)
-                }})</span
-              >
-            </div>
           </div>
 
           <p class="product-description">{{ product.description }}</p>
@@ -56,7 +62,21 @@
                 :disabled="quantity <= 1"
                 aria-label="Decrease quantity"
               >
-                -
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                                     <path
+                     d="M3 6H9"
+                     stroke="var(--gray-secondary)"
+                     stroke-width="1.5"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                   />
+                </svg>
               </button>
               <span class="quantity">{{ quantity }}</span>
               <button
@@ -64,7 +84,21 @@
                 class="quantity-btn"
                 aria-label="Increase quantity"
               >
-                +
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                                     <path
+                     d="M6 3V9M3 6H9"
+                     stroke="var(--gray-secondary)"
+                     stroke-width="1.5"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                   />
+                </svg>
               </button>
             </div>
 
@@ -186,8 +220,8 @@ onMounted(() => {
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #f3f4f6;
-  border-top: 4px solid #6366f1;
+  border: 4px solid var(--gray-quaternary);
+  border-top: 4px solid var(--purple-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
@@ -205,11 +239,11 @@ onMounted(() => {
 .error {
   text-align: center;
   padding: 4rem 2rem;
-  color: #ef4444;
+  color: var(--error);
 }
 
 .retry-btn {
-  background: #6366f1;
+  background: var(--purple-primary);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -220,7 +254,7 @@ onMounted(() => {
 }
 
 .retry-btn:hover {
-  background: #5855eb;
+  background: var(--purple-secondary);
 }
 
 .breadcrumb {
@@ -233,21 +267,43 @@ onMounted(() => {
 .back-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
-  color: #666;
+  color: var(--gray-secondary);
   padding: 0.5rem;
   border-radius: 4px;
   transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back-btn:hover {
-  background: #f3f4f6;
+  background: var(--gray-quaternary);
 }
 
 .breadcrumb-text {
-  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
   font-size: 0.875rem;
+}
+
+.breadcrumb-link {
+  color: var(--gray-secondary);
+  cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: var(--gray-secondary);
+}
+
+.breadcrumb-current {
+  color: var(--purple-primary);
+  font-weight: 600;
 }
 
 .product-layout {
@@ -268,7 +324,7 @@ onMounted(() => {
   height: 400px;
   border-radius: 12px;
   overflow: hidden;
-  background: #f8f9fa;
+  background: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -290,7 +346,7 @@ onMounted(() => {
   height: 80px;
   border-radius: 8px;
   overflow: hidden;
-  background: #f8f9fa;
+  background: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -310,10 +366,11 @@ onMounted(() => {
 
 .product-title {
   margin: 0;
-  font-size: 2rem;
+  font-size: 44px;
+  font-style: normal;
   font-weight: 700;
-  color: #333;
-  line-height: 1.2;
+  line-height: 56px;
+  color: var(--gray-primary);
 }
 
 .product-meta {
@@ -324,7 +381,7 @@ onMounted(() => {
 
 .product-price {
   margin: 0;
-  color: #17183b;
+  color: var(--gray-primary);
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -339,20 +396,20 @@ onMounted(() => {
 }
 
 .stars {
-  color: #fbbf24;
+  color: var(--warning);
   font-size: 1rem;
 }
 
 .rating-text {
   font-size: 0.875rem;
-  color: #666;
+  color: var(--gray-secondary);
 }
 
 .product-description {
   margin: 0;
   font-size: 1rem;
   line-height: 1.6;
-  color: #666;
+  color: var(--gray-secondary);
 }
 
 .add-to-cart-section {
@@ -364,7 +421,7 @@ onMounted(() => {
 .quantity-selector {
   display: flex;
   align-items: center;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--gray-tertiary);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -372,15 +429,17 @@ onMounted(() => {
 .quantity-btn {
   background: white;
   border: none;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem;
   cursor: pointer;
-  font-size: 1.125rem;
-  font-weight: 600;
   transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
 }
 
 .quantity-btn:hover:not(:disabled) {
-  background: #f3f4f6;
+  background: var(--gray-quaternary);
 }
 
 .quantity-btn:disabled {
@@ -394,22 +453,21 @@ onMounted(() => {
   font-weight: 600;
   min-width: 40px;
   text-align: center;
+  color: var(--gray-secondary);
 }
 
 .add-to-cart-btn {
-  background: #6366f1;
-  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 40px;
+  background: var(--purple-primary);
+  border-radius: 16px;
   border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  flex: 1;
+  color: var(--white);
 }
 
 .add-to-cart-btn:hover:not(:disabled) {
-  background: #5855eb;
+  background: var(--purple-secondary);
 }
 
 .add-to-cart-btn:disabled {

@@ -149,12 +149,12 @@ const proceedToCheckout = (): void => {
   margin: 0 0 0.5rem 0;
   font-size: 2rem;
   font-weight: 700;
-  color: #333;
+  color: var(--gray-primary);
 }
 
 .cart-subtitle {
   margin: 0 0 2rem 0;
-  color: #666;
+  color: var(--gray-secondary);
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -177,12 +177,12 @@ const proceedToCheckout = (): void => {
 .empty-cart {
   text-align: center;
   padding: 4rem 2rem;
-  color: #666;
+  color: var(--gray-secondary);
 }
 
 .continue-shopping-btn {
   display: inline-block;
-  background: #6366f1;
+  background: var(--purple-primary);
   color: white;
   text-decoration: none;
   padding: 0.75rem 1.5rem;
@@ -193,7 +193,7 @@ const proceedToCheckout = (): void => {
 }
 
 .continue-shopping-btn:hover {
-  background: #5855eb;
+  background: var(--purple-secondary);
 }
 
 .items-list {
@@ -207,7 +207,7 @@ const proceedToCheckout = (): void => {
   align-items: center;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--gray-quaternary);
   position: relative;
 }
 
@@ -220,7 +220,7 @@ const proceedToCheckout = (): void => {
   height: 80px;
   border-radius: 8px;
   overflow: hidden;
-  background: #f8f9fa;
+  background: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,14 +242,14 @@ const proceedToCheckout = (): void => {
   margin: 0 0 0.25rem 0;
   font-size: 1rem;
   font-weight: 600;
-  color: #333;
+  color: var(--gray-primary);
   line-height: 1.4;
 }
 
 .item-quantity {
   display: flex;
   align-items: center;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--gray-tertiary);
   border-radius: 6px;
   overflow: hidden;
   width: fit-content;
@@ -266,7 +266,7 @@ const proceedToCheckout = (): void => {
 }
 
 .quantity-btn:hover:not(:disabled) {
-  background: #f3f4f6;
+  background: var(--gray-quaternary);
 }
 
 .quantity-btn:disabled {
@@ -285,7 +285,7 @@ const proceedToCheckout = (): void => {
 .item-price {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #333;
+  color: var(--gray-primary);
   margin-left: auto;
 }
 
@@ -293,7 +293,7 @@ const proceedToCheckout = (): void => {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #666;
+  color: var(--gray-secondary);
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 4px;
@@ -302,12 +302,12 @@ const proceedToCheckout = (): void => {
 }
 
 .remove-btn:hover {
-  background: #f3f4f6;
-  color: #ef4444;
+  background: var(--gray-quaternary);
+  color: var(--error);
 }
 
 .order-summary {
-  background: #f8f9fa;
+  background: var(--surface);
   border-radius: 12px;
   padding: 2rem;
   position: sticky;
@@ -318,7 +318,7 @@ const proceedToCheckout = (): void => {
   margin: 0 0 1.5rem 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
+  color: var(--gray-primary);
 }
 
 .summary-items {
@@ -333,17 +333,17 @@ const proceedToCheckout = (): void => {
   justify-content: space-between;
   align-items: center;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--gray-secondary);
 }
 
 .free-shipping {
-  color: #10b981;
+  color: var(--success);
   font-weight: 600;
 }
 
 .summary-divider {
   height: 1px;
-  background: #e0e0e0;
+  background: var(--gray-tertiary);
   margin: 1.5rem 0;
 }
 
@@ -353,7 +353,7 @@ const proceedToCheckout = (): void => {
   align-items: center;
   font-size: 1.125rem;
   font-weight: 700;
-  color: #333;
+  color: var(--gray-primary);
   margin-bottom: 1rem;
 }
 
@@ -362,13 +362,13 @@ const proceedToCheckout = (): void => {
   flex-direction: column;
   gap: 0.25rem;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--gray-secondary);
   margin-bottom: 2rem;
 }
 
 .proceed-btn {
   width: 100%;
-  background: #10b981;
+  background: var(--success);
   color: white;
   border: none;
   padding: 1rem;
@@ -379,7 +379,7 @@ const proceedToCheckout = (): void => {
 }
 
 .proceed-btn:hover:not(:disabled) {
-  background: #059669;
+  background: var(--success-dark);
 }
 
 .proceed-btn:disabled {

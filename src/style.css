@@ -15,16 +15,24 @@
   --purple-primary: #646ded;
   --purple-secondary: #6a70f0;
 
+  /* Status Colors */
+  --error: #ef4444;
+  --success: #10b981;
+  --success-dark: #059669;
+  --warning: #fbbf24;
+  --teal: #BBE5D5;
+
   /* Basics */
   --black: #000000;
   --white: #ffffff;
 }
 
 body {
-  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+  font-style: normal;
 }
 
 h1 {
@@ -52,7 +60,7 @@ button {
 button:focus,
 input:focus,
 select:focus {
-  outline: 2px solid #6366f1;
+  outline: 2px solid var(--purple-primary);
   outline-offset: 2px;
 }
 

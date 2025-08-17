@@ -15,7 +15,6 @@ import HeaderMenu from './components/HeaderMenu.vue';
 <style scoped>
 #app {
   min-height: 100vh;
-  background-color: #f8f9fa;
 }
 
 main {
