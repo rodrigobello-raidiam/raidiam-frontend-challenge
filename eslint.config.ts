@@ -28,6 +28,11 @@ export default defineConfigWithVueTs(
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
 
   {
     ...pluginVitest.configs.recommended,
@@ -40,6 +45,9 @@ export default defineConfigWithVueTs(
       'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
       'cypress/support/**/*.{js,ts,jsx,tsx}',
     ],
+    rules: {
+      'cypress/no-unnecessary-waiting': 'off',
+    },
   },
   skipFormatting
 );

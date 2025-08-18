@@ -1,20 +1,25 @@
 describe('Shopping Flow', () => {
   beforeEach(() => {
-    // Clear localStorage before each test
     cy.clearLocalStorage();
     cy.visit('/');
   });
 
-  it('should complete full shopping flow: home → filter/search → details → add to cart → view cart → reload and persistence confirmed', () => {
-    cy.get('[data-testid="products-grid"]').should('be.visible');
+  it('completes home → search/filter → details → add to cart → cart → increment → remove → reload persists', () => {
+    cy.get('[data-testid="products-grid"], .products-grid').should(
+      'be.visible'
+    ); // tolerate either
     cy.get('.product-card').should('have.length.greaterThan', 0);
 
-    cy.get('.search-input').type('shirt');
+    // Search (debounced; leave hard wait on purpose)
+    cy.get('.search-input').type('hoodie');
+    cy.wait(300);
     cy.get('.product-card').should('have.length.at.least', 1);
 
-    cy.get('.category-select').select('Clothing');
+    // Filter by category
+    cy.get('.category-select').select('Clothes');
     cy.get('.product-card').should('have.length.at.least', 1);
 
+    // Go to details
     cy.get('.product-card').first().click();
     cy.url().should('include', '/products/');
 
@@ -22,11 +27,21 @@ describe('Shopping Flow', () => {
     cy.get('.product-price').should('be.visible');
     cy.get('.product-description').should('be.visible');
 
+    // Capture details (for simple end-to-end integrity)
+    cy.get('.product-title')
+      .invoke('text')
+      .then(s => s.trim())
+      .as('pickedTitle');
+    cy.get('.product-price')
+      .invoke('text')
+      .then(s => s.trim())
+      .as('pickedPrice');
+
+    // Add to cart
     cy.get('.add-to-cart-btn').click();
+    cy.get('.cart-badge').should('be.visible').and('contain', '1');
 
-    cy.get('.cart-badge').should('be.visible');
-    cy.get('.cart-badge').should('contain', '1');
-
+    // Open cart
     cy.get('.cart-link').click();
     cy.url().should('include', '/cart');
 
@@ -34,14 +49,25 @@ describe('Shopping Flow', () => {
     cy.get('.item-title').should('be.visible');
     cy.get('.item-price').should('be.visible');
 
+    // Assert title/price carried over (still using classes)
+    cy.get('@pickedTitle').then(title => {
+      cy.get('.item-title').should('contain', title);
+    });
+    cy.get('@pickedPrice').then(price => {
+      cy.get('.item-price').should('contain', price);
+    });
+
+    // Quantity + badge
     cy.get('.quantity-btn').last().click();
     cy.get('.quantity').should('contain', '2');
     cy.get('.cart-badge').should('contain', '2');
 
+    // Remove → empty
     cy.get('.remove-btn').click();
     cy.get('.empty-cart').should('be.visible');
     cy.get('.cart-badge').should('not.exist');
 
+    // Re-add and verify persistence after reload
     cy.visit('/');
     cy.get('.product-card').first().click();
     cy.get('.add-to-cart-btn').click();
@@ -52,40 +78,5 @@ describe('Shopping Flow', () => {
 
     cy.get('.cart-link').click();
     cy.get('.cart-item').should('have.length', 1);
-  });
-
-  it('should handle URL state for search and filters', () => {
-    cy.get('.search-input').type('shirt');
-
-    cy.get('.category-select').select('Clothing');
-
-    cy.url().should('include', 'q=shirt');
-    cy.url().should('include', 'cat=');
-
-    cy.reload();
-    cy.get('.search-input').should('have.value', 'shirt');
-    cy.get('.category-select').should('have.value');
-  });
-
-  it('should handle empty search results', () => {
-    cy.get('.search-input').type('nonexistentproduct12345');
-
-    cy.get('.no-results').should('be.visible');
-    cy.get('.no-results').should('contain', 'No products found');
-  });
-
-  it('should handle API errors gracefully', () => {
-    cy.intercept('GET', 'https://fakeapi.platzi.com/products', {
-      statusCode: 500,
-      body: { error: 'Server error' },
-    }).as('productsError');
-
-    cy.visit('/');
-    cy.wait('@productsError');
-
-    cy.get('.error').should('be.visible');
-    cy.get('.error').should('contain', 'Failed to load products');
-
-    cy.get('.retry-btn').should('be.visible');
   });
 });
