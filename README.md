@@ -20,6 +20,7 @@ A modern Vue 3 e-commerce application built with Vue Router, Pinia, and Vite. Fe
 - **Vite** for build tooling
 - **Vanilla CSS** for styling (no external UI libraries)
 - **Cypress** for E2E testing
+- **Playwright** for E2E testing (alternative)
 - **ESLint** with TypeScript support
 - **Prettier** for code formatting
 
@@ -52,7 +53,9 @@ The application will be available at `http://localhost:5173`
 
 ### E2E Tests
 
-Run Cypress E2E tests:
+This project supports both **Cypress** and **Playwright** for end-to-end testing.
+
+#### Cypress Tests
 
 ```bash
 # Open Cypress UI
@@ -62,9 +65,25 @@ npm run cypress:open
 npm run cypress:run
 ```
 
+#### Playwright Tests
+
+```bash
+# Install Playwright browsers (first time only)
+npm run playwright:install
+
+# Run tests headlessly
+npm run playwright:test
+
+# Run tests with UI
+npm run playwright:test:ui
+
+# Run tests in headed mode
+npm run playwright:test:headed
+```
+
 ### All Tests
 
-Run all tests:
+Run all Cypress tests:
 
 ```bash
 npm run test:e2e
@@ -151,11 +170,15 @@ All API calls are handled through the `services/api.js` module with proper error
 
 ### E2E Tests
 
+Both Cypress and Playwright tests cover:
+
 - Complete shopping flow
 - Search and filtering
 - URL state persistence
 - Error handling
 - Cart persistence across page reloads
+
+The same test scenarios are implemented in both frameworks to ensure consistent behavior.
 
 ## 🚀 Deployment
 

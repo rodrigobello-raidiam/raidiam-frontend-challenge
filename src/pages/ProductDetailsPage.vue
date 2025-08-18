@@ -24,13 +24,13 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-                         <path
-               d="M10 12L6 8L10 4"
-               stroke="var(--gray-secondary)"
-               stroke-width="1.5"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-             />
+            <path
+              d="M10 12L6 8L10 4"
+              stroke="var(--gray-secondary)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <div class="breadcrumb-text">
@@ -69,13 +69,13 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                                     <path
-                     d="M3 6H9"
-                     stroke="var(--gray-secondary)"
-                     stroke-width="1.5"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                   />
+                  <path
+                    d="M3 6H9"
+                    stroke="var(--gray-secondary)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </button>
               <span class="quantity">{{ quantity }}</span>
@@ -91,13 +91,13 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                                     <path
-                     d="M6 3V9M3 6H9"
-                     stroke="var(--gray-secondary)"
-                     stroke-width="1.5"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                   />
+                  <path
+                    d="M6 3V9M3 6H9"
+                    stroke="var(--gray-secondary)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </button>
             </div>
