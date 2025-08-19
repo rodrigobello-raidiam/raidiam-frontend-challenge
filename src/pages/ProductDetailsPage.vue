@@ -48,13 +48,13 @@
           <h1 class="product-title">{{ product.title }}</h1>
 
           <div class="product-meta">
-            <p class="product-price">${{ product.price.toFixed(2) }}</p>
+            <p class="product-price">${{ product.price }}</p>
           </div>
 
           <p class="product-description">{{ product.description }}</p>
 
           <!-- Quantity and Add to Cart -->
-          <div class="add-to-cart-section">
+          <div class="add-to-cart-section" @click="addToCart">
             <div class="quantity-selector">
               <button
                 @click="decreaseQuantity"

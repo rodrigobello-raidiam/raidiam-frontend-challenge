@@ -6,7 +6,6 @@ export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([]);
   const isLoading = ref(false);
 
-  // Load cart from localStorage on store initialization
   const loadCart = (): void => {
     try {
       const savedCart = localStorage.getItem('cart:v1');
@@ -18,19 +17,16 @@ export const useCartStore = defineStore('cart', () => {
     }
   };
 
-  // Save cart to localStorage
+  let persistTimer: NodeJS.Timeout;
   const saveCart = (): void => {
-    try {
+    clearTimeout(persistTimer);
+    persistTimer = setTimeout(() => {
       localStorage.setItem('cart:v1', JSON.stringify(items.value));
-    } catch (error) {
-      console.error('Error saving cart to localStorage:', error);
-    }
+    }, 1000);
   };
 
-  // Initialize cart
   loadCart();
 
-  // Computed properties
   const totalItems = computed(() => {
     return items.value.reduce((total, item) => total + item.quantity, 0);
   });
@@ -41,7 +37,6 @@ export const useCartStore = defineStore('cart', () => {
     }, 0);
   });
 
-  // Actions
   const addToCart = (product: Product): void => {
     const existingItem = items.value.find(item => item.id === product.id);
 
@@ -51,7 +46,7 @@ export const useCartStore = defineStore('cart', () => {
       items.value.push({
         id: product.id,
         title: product.title,
-        price: product.price,
+        price: Math.round(product.price * 100),
         image: product.images[0],
         quantity: 1,
       });
@@ -63,7 +58,7 @@ export const useCartStore = defineStore('cart', () => {
   const removeFromCart = (productId: number): void => {
     const index = items.value.findIndex(item => item.id === productId);
     if (index > -1) {
-      items.value.splice(index, 1);
+      items.value.splice(index);
       saveCart();
     }
   };

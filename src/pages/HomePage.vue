@@ -51,7 +51,7 @@
           <option
             v-for="category in categories"
             :key="category.id"
-            :value="category.id"
+            :value="category.name"
           >
             {{ category.name }}
           </option>
@@ -77,7 +77,7 @@
         <p>No products found matching your criteria.</p>
       </div>
 
-      <div v-else class="products-grid" data-testid="products-grid">
+      <div v-else class="products-grid">
         <ProductCard
           v-for="product in filteredProducts"
           :key="product.id"
@@ -112,9 +112,8 @@ const filteredProducts = computed(() => {
 
   // Filter by search query
   if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase();
     filtered = filtered.filter(product =>
-      product.title.toLowerCase().includes(query)
+      product.title.includes(searchQuery.value)
     );
   }
 

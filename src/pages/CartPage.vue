@@ -125,7 +125,7 @@ const finalTotal = computed(() => {
 
 const estimatedDelivery = computed(() => {
   const date = new Date();
-  date.setDate(date.getDate() + 7); // 7 days from now
+  date.setDate(date.getDate() + 7);
   return date.toLocaleDateString('en-US', {
     day: '2-digit',
     month: 'short',
@@ -135,7 +135,6 @@ const estimatedDelivery = computed(() => {
 
 // Methods
 const proceedToCheckout = (): void => {
-  // This would typically navigate to a checkout page
   alert('Proceeding to checkout...');
 };
 </script>

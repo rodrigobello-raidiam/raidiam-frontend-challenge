@@ -43,7 +43,7 @@
             {{ cartStore.totalItems }}
           </span>
         </RouterLink>
-        <button class="sign-in-btn">Sign In</button>
+        <button class="sign-in-btn" @click="signIn">Sign In</button>
       </div>
     </div>
   </header>
@@ -54,6 +54,10 @@ import { RouterLink } from 'vue-router';
 import { useCartStore } from '../stores/cart';
 
 const cartStore = useCartStore();
+
+const signIn = () => {
+  alert('Proceeding to sign in...');
+};
 </script>
 
 <style scoped>
