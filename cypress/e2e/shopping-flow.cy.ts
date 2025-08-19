@@ -7,11 +7,11 @@ describe('Shopping Flow', () => {
   it('completes home → search/filter → details → add to cart → cart → increment → remove → reload persists', () => {
     cy.get('[data-testid="products-grid"], .products-grid').should(
       'be.visible'
-    ); // tolerate either
+    );
     cy.get('.product-card').should('have.length.greaterThan', 0);
 
-    // Search (debounced; leave hard wait on purpose)
-    cy.get('.search-input').type('hoodie');
+    // Search
+    cy.get('.search-input').type('hooded');
     cy.wait(300);
     cy.get('.product-card').should('have.length.at.least', 1);
 
@@ -49,7 +49,7 @@ describe('Shopping Flow', () => {
     cy.get('.item-title').should('be.visible');
     cy.get('.item-price').should('be.visible');
 
-    // Assert title/price carried over (still using classes)
+    // Assert title/price carried over
     cy.get('@pickedTitle').then(title => {
       cy.get('.item-title').should('contain', title);
     });

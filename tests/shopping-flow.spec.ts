@@ -20,8 +20,8 @@ test.describe('Shopping Flow', () => {
     const productCards = page.locator('.product-card');
     await expect(productCards.first()).toBeVisible();
 
-    // Search (debounced; leave hard wait on purpose)
-    await page.locator('.search-input').fill('hoodie');
+    // Search
+    await page.locator('.search-input').fill('hooded');
     await page.waitForTimeout(300);
     await expect(productCards.first()).toBeVisible();
 
