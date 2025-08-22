@@ -21,7 +21,7 @@ test.describe('Shopping Flow', () => {
     await expect(productCards.first()).toBeVisible();
 
     // Search
-    await page.locator('.search-input').fill('hooded');
+    await page.locator('.search-input').fill('red');
     await page.waitForTimeout(300);
     await expect(productCards.first()).toBeVisible();
 

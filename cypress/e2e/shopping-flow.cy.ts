@@ -11,7 +11,7 @@ describe('Shopping Flow', () => {
     cy.get('.product-card').should('have.length.greaterThan', 0);
 
     // Search
-    cy.get('.search-input').type('hooded');
+    cy.get('.search-input').type('red');
     cy.wait(300);
     cy.get('.product-card').should('have.length.at.least', 1);
 
